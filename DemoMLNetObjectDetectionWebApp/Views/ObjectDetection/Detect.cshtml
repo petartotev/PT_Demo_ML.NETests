@@ -1,0 +1,14 @@
+﻿@model ImageViewModel
+
+@{
+    ViewData["Title"] = "Detect";
+}
+
+<div class="container text-center">
+    <!--<h1>Image Object Detect!</h1>-->
+    <form asp-controller="ObjectDetection" asp-action="Detect" method="post" class="form" enctype="multipart/form-data">
+        <!--<label asp-for="File"></label>-->
+        <input class="btn btn-lg border border-primary" type="file" name="File" />
+        <input class="btn btn-lg btn-primary text-white" type="submit" value="Submit" />
+    </form>
+</div>
