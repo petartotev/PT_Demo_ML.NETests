@@ -33,8 +33,7 @@ namespace DemoMLNetObjectDetectionWebApp.Controllers
             }
 
             string fileRandomGuidName = Guid.NewGuid().ToString();
-
-            var pathLocal = @"C:\Users\USER\source\repos\DemoMLNetObjectDetection\DemoMLNetObjectDetectionConsoleApp\assets\images\" + fileRandomGuidName + ".jpg";
+            var pathLocal = @"C:\Users\USER\source\repos\DemoMLNet\DemoMLNetObjectDetectionConsoleApp\assets\images\" + fileRandomGuidName + ".jpg";
 
             var fileToUploadToDisk = model.File;
             model.FileGuidName = fileRandomGuidName;

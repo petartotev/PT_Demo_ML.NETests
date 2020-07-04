@@ -14,8 +14,8 @@ namespace DemoMLNetObjectDetectionConsoleApp.Services.Implementations
     {
         public async void CopyImageFromLocalToWebDirectory(string guidName)
         {         
-            var sourceFileName = @"C:\Users\USER\source\repos\DemoMLNetObjectDetection\DemoMLNetObjectDetectionConsoleApp\assets\images\output\" + guidName + ".jpg";
-            var destinationFileName = @"C:\Users\USER\source\repos\DemoMLNetObjectDetection\DemoMLNetObjectDetectionWebApp\wwwroot\" + guidName + ".jpg";
+            var sourceFileName = @"C:\Users\USER\source\repos\DemoMLNet\DemoMLNetObjectDetectionConsoleApp\assets\images\output\" + guidName + ".jpg";
+            var destinationFileName = @"C:\Users\USER\source\repos\DemoMLNet\DemoMLNetObjectDetectionWebApp\wwwroot\" + guidName + ".jpg";
 
             await Task.Run(() => File.Copy(sourceFileName, destinationFileName, true));
         }

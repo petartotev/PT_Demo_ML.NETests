@@ -7,7 +7,9 @@
 
 <div class="container text-center">
     <h3>@nameOfFileToPresent.Replace("/", "")</h3>
+
     <img src="@nameOfFileToPresent" class="text-center"/>
+
     @foreach (var item in Model.TextAnalysis)
     {
         <p class="text-center">@item</p>
