@@ -45,7 +45,7 @@ namespace DemoMLNetSentimentAnalysisConsoleApp
 
             IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(_dataPath, hasHeader: false);
 
-            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.3); //default is 0.1
+            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.1); //default is 0.1
 
             return splitDataView;
         }

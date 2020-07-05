@@ -23,7 +23,7 @@
             // It has articles about politics, society, local municipalities, sport and investigation.
             // The reason flagman.bg was chosen for the demo is that the urls of the articles there are easily put into a for-loop.
             // Each article has its unique id that comes in the query string - for example https://www.flagman.bg/article/218139.
-            for (var articleId = 218000; articleId >= 1; articleId--)
+            for (var articleId = 219000; articleId >= 1; articleId--)
             {
                 Console.Write($"{articleId} => ");
                 Console.Write('^');
