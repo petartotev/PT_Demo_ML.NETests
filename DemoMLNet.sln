@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetObjectDetectionWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetSentimentAnalysisConsoleApp", "DemoMLNetSentimentAnalysisConsoleApp\DemoMLNetSentimentAnalysisConsoleApp.csproj", "{F84A9FE1-53FD-4BC7-946A-3631D6779D5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererFlagmanBg", "FlagmanDataGatherer\DataGathererFlagmanBg.csproj", "{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererTrudCC", "DataGathererTrudCC\DataGathererTrudCC.csproj", "{42BBE73D-9F46-4C30-8826-128C5BA54DB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGathererTrudCC", "DataGathererTrudCC\DataGathererTrudCC.csproj", "{42BBE73D-9F46-4C30-8826-128C5BA54DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetMultiClassificationConsoleApp", "DemoMLNetMulticlassClassificationConsoleApp\DemoMLNetMultiClassificationConsoleApp.csproj", "{C1E87115-EFEA-477F-A288-4B1BD2B1973C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMLNetMultiClassificationConsoleApp", "DemoMLNetMulticlassClassificationConsoleApp\DemoMLNetMultiClassificationConsoleApp.csproj", "{C1E87115-EFEA-477F-A288-4B1BD2B1973C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererFlagmanBg", "DataGathererFlagmanBg\DataGathererFlagmanBg.csproj", "{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,6 @@ Global
 		{F84A9FE1-53FD-4BC7-946A-3631D6779D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F84A9FE1-53FD-4BC7-946A-3631D6779D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F84A9FE1-53FD-4BC7-946A-3631D6779D5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
