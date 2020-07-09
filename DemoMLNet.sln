@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetSentimentAnalysisC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererFlagmanBg", "FlagmanDataGatherer\DataGathererFlagmanBg.csproj", "{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGathererTrudCC", "DataGathererTrudCC\DataGathererTrudCC.csproj", "{42BBE73D-9F46-4C30-8826-128C5BA54DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMLNetMultiClassificationConsoleApp", "DemoMLNetMulticlassClassificationConsoleApp\DemoMLNetMultiClassificationConsoleApp.csproj", "{C1E87115-EFEA-477F-A288-4B1BD2B1973C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D52D88D-ADB6-4E3F-99AE-1C3C7A2B59B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BBE73D-9F46-4C30-8826-128C5BA54DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E87115-EFEA-477F-A288-4B1BD2B1973C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
