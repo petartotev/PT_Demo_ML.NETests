@@ -17,8 +17,9 @@ Foreach article it takes:
 - all the positive comments with (upvote : downvote) ratio of 30 : 1 or more
 - all the negative comments with (upvote : downvote) ratio of 1 : 15 or less.
 
-Foreach comment that matches the instructions above - it File.Appends() a new line int the following format:
-$"{commentText}\t{commentBinaryValue}
+Foreach comment that matches these conditions it File.Appends() a new line in the format: 
+
+$"{commentText}\t{commentBinaryValue}"
 
 2. The text file is split into two - 80% of it would be used for training the model and 20% - for testing it.
 
