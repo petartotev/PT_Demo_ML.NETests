@@ -7,7 +7,7 @@ This repository contains a Solution with a series of Demo Projects that experime
 
 ### Binary Classification / (Sentiment Analysis)
 
-#### Based on a pre-trained model you can get a prediction if a certain comment (text) that you give as an input will receive a positive or a negative value.
+#### A pre-trained model predicts if a certain comment (text) that you give as an input will receive a positive or negative value.
 
 ##### Algorithm used: LbfgsLogisticRegression
 
@@ -31,7 +31,7 @@ $"{commentText}\t{commentBinaryValue}
 
 ### Multiclass Classification 
 
-#### A pre-trained model can predict the probable category of a book / movie / joke - based on a summary (text) about it that you give as an input.
+#### A pre-trained model predicts the probable category of a book/movie/joke - based on a summary (text) about it that you give as an input.
 
 ##### Algorithm used: SdcaMaximumEntropy
 
