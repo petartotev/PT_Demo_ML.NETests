@@ -5,10 +5,9 @@
 Information:
 The repository contains a Solution with a series of Projects that experiment with the ML.NET Library. 
 
-- *Binary Classification* (Sentiment Analysis)
-- *Multiclass Classification* - guesses the category/genre of a book/movie/joke - based on a pre-trained model with a file in a format (category,summary/n...)
-- *Object Detection* - finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
-- 
+- **Binary Classification** (Sentiment Analysis)
+- **Multiclass Classification** - guesses the category/genre of a book/movie/joke - based on a pre-trained model with a file in a format (category,summary/n...)
+- **Object Detection** - finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
 
 Credits:
 Using those was a piece of cake thanks to:
