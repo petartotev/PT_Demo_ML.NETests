@@ -22,8 +22,7 @@ $"{commentText}\t{commentBinaryValue}
 
 2. The text file is split into two - 80% of it would be used for training the model and 20% - for testing it.
 
-3. Then the .txt with all the comments (content, value) inside is then used to train a ML model - based on the following algorithm:
-- mlContext.BinaryClassification.Trainers.**LbfgsLogisticRegression**.
+3. Then the .txt with all the comments (content, value) inside is used to train the ML model with the algorithm that comes from the Microsoft.ML library.
 
 4. Now the model could be evaluated with those 20% separated in step 2.
 
