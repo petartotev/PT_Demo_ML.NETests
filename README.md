@@ -2,12 +2,12 @@
 
 ![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/output/dd3832f7-44cd-4466-b5fa-70bbe58ebd77.jpg)
 
-Information:
+## Information:
 The repository contains a Solution with a series of Projects that experiment with the ML.NET Library. 
 
-- **Binary Classification** (Sentiment Analysis)
+### Binary Classification / (Sentiment Analysis)
 
-1. A DataGathererFlagmanBg project is created to gather information through the existing articles in the website of a local media in Burgas, Bulgaria.
+1. A **DataGathererFlagmanBg** project is created to gather information through the existing articles in the website of a local media in Burgas, Bulgaria.
 
 For each article it takes:
 - all the positive comments with (upvote : downvote) ratio of 30 : 1 or more
@@ -25,11 +25,15 @@ mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression
 
 5. Finally, you can give the pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability). 
 
-- **Multiclass Classification** - guesses the category/genre of a book/movie/joke - based on the decision of a model that is pre-trained with a file in a format (category,summary/n...).
+### Multiclass Classification** 
 
-- **Object Detection** - finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
+Guesses the category/genre of a book/movie/joke - based on the decision of a model that is pre-trained with a file in a format (category,summary/n...).
 
-Credits:
+### Object Detection
+
+Finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
+
+## Credits:
 Using those was a piece of cake thanks to:
 - the Microsoft Tutorials about ML.NET
 - https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a lecture of Nikolay Kostov (@NikolayIT) presented in Software University in 2020.
