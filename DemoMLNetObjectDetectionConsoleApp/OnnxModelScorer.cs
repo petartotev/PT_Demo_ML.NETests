@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DemoMLNetObjectDetectionConsoleApp.DataStructures;
-using DemoMLNetObjectDetectionConsoleApp.YoloParser;
-using Microsoft.ML;
-using Microsoft.ML.Data;
-//using ObjectDetection.DataStructures;
-//using ObjectDetection.YoloParser;
-
-namespace DemoMLNetObjectDetectionConsoleApp
+﻿namespace DemoMLNetObjectDetectionConsoleApp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using DemoMLNetObjectDetectionConsoleApp.DataStructures;
+    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
+
+    using Microsoft.ML;
+    using Microsoft.ML.Data;
+
     public class OnnxModelScorer
     {
         private readonly string imagesFolder;

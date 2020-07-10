@@ -1,7 +1,7 @@
-﻿using Microsoft.ML.Data;
-
-namespace DemoMLNetSentimentAnalysisConsoleApp
+﻿namespace DemoMLNetSentimentAnalysisConsoleApp
 {
+    using Microsoft.ML.Data;
+
     public class SentimentPrediction : SentimentData
     {
         // THE MOST IMPORTANT PROPERTY FOR THIS TUTORIAL

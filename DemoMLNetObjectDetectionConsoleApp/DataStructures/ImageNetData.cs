@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Microsoft.ML.Data;
-
-namespace DemoMLNetObjectDetectionConsoleApp.DataStructures
+﻿namespace DemoMLNetObjectDetectionConsoleApp.DataStructures
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
+    using Microsoft.ML.Data;
+
     public class ImageNetData
     {
         [LoadColumn(0)]

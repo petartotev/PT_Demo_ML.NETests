@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-
-namespace DemoMLNetObjectDetectionConsoleApp.YoloParser
+﻿namespace DemoMLNetObjectDetectionConsoleApp.YoloParser
 {
+    using System.Drawing;
+
     public class BoundingBoxDimensions : DimensionsBase { }
 
     public class YoloBoundingBox

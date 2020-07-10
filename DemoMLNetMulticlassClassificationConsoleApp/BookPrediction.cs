@@ -1,10 +1,11 @@
-﻿using Microsoft.ML.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace DemoMLNetMultiClassificationConsoleApp
+{    
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
 
-namespace DemoMLNetMultiClassificationConsoleApp
-{
+    using Microsoft.ML.Data;
+
     public class BookPrediction
     {
         [ColumnName("PredictedLabel")]

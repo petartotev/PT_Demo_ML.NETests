@@ -1,15 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using Microsoft.ML;
-using DemoMLNetObjectDetectionConsoleApp.DataStructures;
-using DemoMLNetObjectDetectionConsoleApp.YoloParser;
-
-namespace DemoMLNetObjectDetectionConsoleApp
+﻿namespace DemoMLNetObjectDetectionConsoleApp
 {
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
+    using System.Linq;
+    
+    using DemoMLNetObjectDetectionConsoleApp.DataStructures;
+    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
+
+    using Microsoft.ML;
+
     public class Program
     {
         public static void Main(string[] args)

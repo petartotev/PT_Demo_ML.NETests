@@ -1,15 +1,16 @@
-﻿using DemoMLNetObjectDetectionConsoleApp.DataStructures;
-using DemoMLNetObjectDetectionConsoleApp.YoloParser;
-using Microsoft.ML;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DemoMLNetObjectDetectionConsoleApp.Services.Implementations
+{  
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
 
-namespace DemoMLNetObjectDetectionConsoleApp.Services.Implementations
-{
+    using DemoMLNetObjectDetectionConsoleApp.DataStructures;
+    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
+
+    using Microsoft.ML;
+
     public class ObjectDetectService : IObjectDetectService
     {
         public async void CopyImageFromLocalToWebDirectory(string guidName)

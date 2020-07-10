@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-
-namespace DemoMLNetObjectDetectionConsoleApp.YoloParser
+﻿namespace DemoMLNetObjectDetectionConsoleApp.YoloParser
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+
     public class YoloOutputParser
     {
         public class CellDimensions : DimensionsBase { }

@@ -9,6 +9,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
+    // AngleSharp is a .NET library that gives you the ability to parse angle bracket based hyper-texts like HTML, SVG, and MathML.
     using AngleSharp.Html.Parser;
 
     public class DataGathererTrud

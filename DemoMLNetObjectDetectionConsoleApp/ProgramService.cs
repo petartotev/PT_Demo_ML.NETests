@@ -1,13 +1,13 @@
-﻿using DemoMLNetObjectDetectionConsoleApp.YoloParser;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Text;
+﻿namespace DemoMLNetObjectDetectionConsoleApp
+{    
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Drawing.Drawing2D;
+    using System.IO;
 
-namespace DemoMLNetObjectDetectionConsoleApp
-{
+    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
+
     public static class ProgramService
     {
         public static string GetAbsolutePath(string relativePath)

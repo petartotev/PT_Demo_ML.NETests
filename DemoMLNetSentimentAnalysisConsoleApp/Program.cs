@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Microsoft.ML;
-using Microsoft.ML.Data;
-using static Microsoft.ML.DataOperationsCatalog;
-using Microsoft.ML.Trainers;
-using Microsoft.ML.Transforms.Text;
-using System.Text;
-
-namespace DemoMLNetSentimentAnalysisConsoleApp
+﻿namespace DemoMLNetSentimentAnalysisConsoleApp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;    
+    using System.Text;
+
+    using Microsoft.ML;
+    using Microsoft.ML.Data;
+    using static Microsoft.ML.DataOperationsCatalog;
+
     public class Program
     {
         // Add the following code to the line right above the Main method, to create a field to hold the recently downloaded dataset file path:
@@ -22,7 +21,7 @@ namespace DemoMLNetSentimentAnalysisConsoleApp
 
             // The MLContext class is a starting point for all ML.NET operations.
             // Initializing mlContext creates a new ML.NET environment that can be shared across the model creation workflow objects.
-            // It's similar, conceptually, to DBContext in Entity Framework.
+            // It's similar, conceptually, to DBContext in Entity Framework (Core).
 
             MLContext mlContext = new MLContext(1234);
 
@@ -198,7 +197,7 @@ namespace DemoMLNetSentimentAnalysisConsoleApp
     }
 }
 
-//https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/sentiment-analysis
+// https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/sentiment-analysis
 
 // CREATE A CONSOLE APPLICATION
 // Create Data folder.

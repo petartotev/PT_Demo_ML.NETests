@@ -1,7 +1,7 @@
-﻿using Microsoft.ML.Data;
-
-namespace DemoMLNetObjectDetectionConsoleApp.DataStructures
+﻿namespace DemoMLNetObjectDetectionConsoleApp.DataStructures
 {
+    using Microsoft.ML.Data;
+
     public class ImageNetPrediction
     {
         [ColumnName("grid")]
