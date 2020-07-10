@@ -23,7 +23,7 @@ mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression
 
 4. Now the model could be evaluated with those 20% separated in step 2.
 
-5. Now you can give pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability). 
+5. Finally, you can give the pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability). 
 
 - **Multiclass Classification** - guesses the category/genre of a book/movie/joke - based on the decision of a model that is pre-trained with a file in a format (category,summary/n...).
 
