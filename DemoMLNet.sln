@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetMultiClassificatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererFlagmanBg", "DataGathererFlagmanBg\DataGathererFlagmanBg.csproj", "{F33C7D37-CCA4-4CB3-9EDD-4F6E944A315D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGathererStorytelCom", "DataGathererStorytelCom\DataGathererStorytelCom.csproj", "{22CF82BE-4BD2-4D55-9A48-DC46E710A016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGathererStorytelCom", "DataGathererStorytelCom\DataGathererStorytelCom.csproj", "{22CF82BE-4BD2-4D55-9A48-DC46E710A016}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoMLNetRegressionConsoleApp", "DemoMLNetRegressionConsoleApp\DemoMLNetRegressionConsoleApp.csproj", "{C3D9B321-DAAF-4F04-B436-835EFE7A51FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{22CF82BE-4BD2-4D55-9A48-DC46E710A016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22CF82BE-4BD2-4D55-9A48-DC46E710A016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22CF82BE-4BD2-4D55-9A48-DC46E710A016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D9B321-DAAF-4F04-B436-835EFE7A51FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D9B321-DAAF-4F04-B436-835EFE7A51FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D9B321-DAAF-4F04-B436-835EFE7A51FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D9B321-DAAF-4F04-B436-835EFE7A51FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

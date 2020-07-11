@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using DemoMLNetObjectDetectionWebApp.Models;
-
-namespace DemoMLNetObjectDetectionWebApp.Controllers
+﻿namespace DemoMLNetObjectDetectionWebApp.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using DemoMLNetObjectDetectionWebApp.Models;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
