@@ -7,7 +7,7 @@ This repository contains a Solution with a series of Demo Projects that experime
 
 ### Binary Classification / (Sentiment Analysis)
 
-#### Based on a pre-trained model you can get a prediction if a certain comment (text) that you give as an input will receive a positive or a negative value.
+#### A pre-trained model predicts if a certain comment (text) that you give as an input will receive a positive or negative value.
 
 ##### Algorithm used: LbfgsLogisticRegression
 
@@ -17,13 +17,13 @@ Foreach article it takes:
 - all the positive comments with (upvote : downvote) ratio of 30 : 1 or more
 - all the negative comments with (upvote : downvote) ratio of 1 : 15 or less.
 
-Foreach comment that matches the instructions above - it File.Appends() a new line int the following format:
-$"{commentText}\t{commentBinaryValue}
+Foreach comment that matches these conditions it File.Appends() a new line in the format: 
+
+$"{commentText}\t{commentBinaryValue}"
 
 2. The text file is split into two - 80% of it would be used for training the model and 20% - for testing it.
 
-3. Then the .txt with all the comments (content, value) inside is then used to train a ML model - based on the following algorithm:
-- mlContext.BinaryClassification.Trainers.**LbfgsLogisticRegression**.
+3. Then the .txt with all the comments (content, value) inside is used to train the ML model with the algorithm that comes from the Microsoft.ML library.
 
 4. Now the model could be evaluated with those 20% separated in step 2.
 
@@ -31,7 +31,7 @@ $"{commentText}\t{commentBinaryValue}
 
 ### Multiclass Classification 
 
-#### A pre-trained model can predict the probable category of a book / movie / joke - based on a summary (text) about it that you give as an input.
+#### A pre-trained model predicts the probable category of a book/movie/joke - based on a summary (text) about it that you give as an input.
 
 ##### Algorithm used: SdcaMaximumEntropy
 
