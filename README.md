@@ -1,6 +1,6 @@
 # PT_Demos_ML.NETests
 
-![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/horse.jpg)
+![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/output/horse_output.jpg)
 
 ## Information:
 This repository contains a Solution with a series of Demo Projects that experiment with the ML.NET Library. 
