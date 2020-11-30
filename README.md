@@ -1,8 +1,11 @@
 # PT_Demo_ML.NETests
 
+## General Information
+
+---
+
 ![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/output/horse_output.jpg)
 
-## Information:
 This repository contains a Solution with a series of Demo Projects that experiment with the ML.NET Library. 
 
 ### Binary Classification / (Sentiment Analysis)
@@ -41,7 +44,12 @@ $"{commentText}\t{commentBinaryValue}"
 
 ##### Algorithm used: OnnxModelScorer ( TinyYolo2_model.onnx )
 
-## Credits:
-Using those was a piece of cake thanks to:
-- https://dotnet.microsoft.com/learn/ml-dotnet - the free tutorials about Machine Learning with ML.NET
-- https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a lecture of Nikolay Kostov (@NikolayIT) presented in Software University in 2020.
+---
+
+## Credits
+
+---
+
+Implementing my first ML.NET project was a piece of cake thanks to:
+- https://dotnet.microsoft.com/learn/ml-dotnet - a free tutorials by Microsoft about Machine Learning with ML.NET
+- https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a great lecture by Nikolay Kostov (@NikolayIT) presented in Software University (SoftUni) in 2020.
