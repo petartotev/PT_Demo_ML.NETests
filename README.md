@@ -2,7 +2,7 @@
 
 ## General Information
 
-This repository contains a solution with a series of Demo Projects that experiment with the ML.NET Library.
+This repository contains a Solution with a series of Demo Projects that experiment with the ML.NET Library. 
 
 ![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/output/horse_output.jpg)
 
@@ -15,11 +15,10 @@ This repository contains a solution with a series of Demo Projects that experime
 1. The **DataGathererFlagmanBg** project is created to gather information from https://www.flagman.bg/ - a local media in Burgas, Bulgaria.
 
 Foreach article it takes:
-
 - all the positive comments with (upvote : downvote) ratio of 30 : 1 or more
 - all the negative comments with (upvote : downvote) ratio of 1 : 15 or less.
 
-Foreach comment that matches these conditions it File.Appends() a new line in the format:
+Foreach comment that matches these conditions it File.Appends() a new line in the format: 
 
 $"{commentText}\t{commentBinaryValue}"
 
@@ -29,9 +28,9 @@ $"{commentText}\t{commentBinaryValue}"
 
 4. Now the model could be evaluated with those 20% separated in step 2.
 
-5. Finally, you can give the pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability).
+5. Finally, you can give the pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability). 
 
-### Multiclass Classification
+### Multiclass Classification 
 
 #### A pre-trained model predicts the probable category of a book/movie/joke - based on a summary (text) about it that you give as an input.
 
@@ -46,7 +45,6 @@ $"{commentText}\t{commentBinaryValue}"
 ## Credits
 
 Implementing my first ML.NET project was a piece of cake thanks to:
-
 - https://dotnet.microsoft.com/learn/ml-dotnet - a free tutorials by Microsoft about Machine Learning with ML.NET
 - https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a great lecture by Nikolay Kostov (@NikolayIT) presented in Software University (SoftUni) in 2020.
 
