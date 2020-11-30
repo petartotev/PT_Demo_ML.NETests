@@ -1,4 +1,4 @@
-# PT_Demos_ML.NETests
+# PT_Demo_ML.NETests
 
 ![Horse Object Detected](DemoMLNetObjectDetectionConsoleApp/assets/images/output/horse_output.jpg)
 
