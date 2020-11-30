@@ -8,7 +8,7 @@ This repository contains a solution with a number of .NET Core projects that exp
 
 ## Technologies
 
-- Microsoft ML,NET
+- Microsoft ML\.NET
   - LightGbm
   - FastTree
   - Onnx Runtime/Transformer
