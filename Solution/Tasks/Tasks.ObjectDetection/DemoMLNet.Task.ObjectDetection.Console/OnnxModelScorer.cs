@@ -1,14 +1,12 @@
 ﻿namespace DemoMLNetObjectDetectionConsoleApp
 {
+    using DemoMLNetObjectDetectionConsoleApp.DataStructures;
+    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
+    using Microsoft.ML;
+    using Microsoft.ML.Data;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    using DemoMLNetObjectDetectionConsoleApp.DataStructures;
-    using DemoMLNetObjectDetectionConsoleApp.YoloParser;
-
-    using Microsoft.ML;
-    using Microsoft.ML.Data;
 
     public class OnnxModelScorer
     {
@@ -33,10 +31,7 @@
 
         public struct TinyYoloModelSettings
         {
-            // for checking Tiny yolo2 Model input and  output  parameter names,
-            //you can use tools like Netron, 
-            // which is installed by Visual Studio AI Tools
-
+            // For checking Tiny yolo2 Model input and  output  parameter names, you can use tools like Netron, which is installed by Visual Studio AI Tools.
             // input tensor name
             public const string ModelInput = "image";
 
@@ -66,7 +61,7 @@
         {
             Console.WriteLine($"Images location: {imagesFolder}");
             Console.WriteLine("");
-            Console.WriteLine("=====Identify the objects in the images=====");
+            Console.WriteLine("===== Identify the objects in the images =====");
             Console.WriteLine("");
 
             IDataView scoredData = model.Transform(testData);

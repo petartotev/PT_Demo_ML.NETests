@@ -27,10 +27,7 @@
 
         private string[] labels = new string[]
         {
-            "aeroplane", "bicycle", "bird", "boat", "bottle",
-            "bus", "car", "cat", "chair", "cow",
-            "diningtable", "dog", "horse", "motorbike", "person",
-            "pottedplant", "sheep", "sofa", "train", "tvmonitor"
+            "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"
         };
 
         private static Color[] classColors = new Color[]
@@ -75,10 +72,8 @@
 
         private int GetOffset(int x, int y, int channel)
         {
-            // YOLO outputs a tensor that has a shape of 125x13x13, which 
-            // WinML flattens into a 1D array.  To access a specific channel 
-            // for a given (x,y) cell position, we need to calculate an offset
-            // into the array
+            // YOLO outputs a tensor that has a shape of 125x13x13, which WinML flattens into a 1D array.
+            // To access a specific channel for a given (x,y) cell position, we need to calculate an offset into the array.
             return (channel * this.channelStride) + (y * COL_COUNT) + x;
         }
 

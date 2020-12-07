@@ -4,6 +4,8 @@
 
 This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET Library.
 
+*This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do - just for me to understand the steps of machine learning better.*
+
 ![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
 
 ## Technologies
@@ -98,7 +100,16 @@ $"{commentText}\t{commentBinaryValue}"
 
 ### DemoMLNet.Tasks.MulticlassClassification
 
-#### **Algorithm used: SdcaMaximumEntropy**
+#### **Algorithms (Trainers) used:**
+mlContext.MulticlassClassification.Trainers
+- .SdcaMaximumEntropy
+  - Accuracy: 77.06%
+  - Auc: 73.42%
+  - F1Score: 85.96%
+- .LightGbm
+  - Accuracy: 
+  - Auc: 
+  - F1Score: 
 
 A pre-trained model predicts the probable category of a book/movie/joke - based on a summary (text) about it that you give as an input.
 

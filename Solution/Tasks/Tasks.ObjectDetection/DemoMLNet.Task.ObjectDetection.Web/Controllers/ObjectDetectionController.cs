@@ -33,7 +33,8 @@
             }
 
             string fileRandomGuidName = Guid.NewGuid().ToString();
-            var pathLocal = @"C:\Users\USER\source\repos\DemoMLNet\DemoMLNetObjectDetectionConsoleApp\assets\images\" + fileRandomGuidName + ".jpg";
+            string pathProject = @"C:/Users/USER/source/repos/PT_Demo_ML.NET/Solution/Tasks/Tasks.ObjectDetection/";
+            string pathLocal = pathProject + @"DemoMLNet.Task.ObjectDetection.Console/assets/images/" + fileRandomGuidName + ".jpg";
 
             var fileToUploadToDisk = model.File;
             model.FileGuidName = fileRandomGuidName;
