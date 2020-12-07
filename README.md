@@ -43,9 +43,9 @@ A DataGatherer class is implemented to play the role of a **web crawler**.
 Once an instance of DataGatherer is instantiated it also creates a new HttpClient and AngleSharp HtmlParser.
 They are used within a for loop that goes through a number of pages with URLs that end with an article/category number, for example:  
 https://www.flagman.bg/article/{articleId}  
-The result of this crawling is a string.  
-It is cleaned from all its html elements and is saved as a .txt file.  
-This .txt file would later be used to train a ML model - 80% for training and 20% for evaluating the accuracy of the algorithm used.
+The result of this crawling is a string. It is cleaned from all its html elements and is saved as a .txt file (comment, vote ratio).  
+For this tutorial, 44137 comments are gathered.  
+The .txt file would later be used to train a ML model - 80% for training and 20% for evaluating the accuracy of the algorithm used.
 
 ---
 
@@ -57,7 +57,20 @@ This .txt file would later be used to train a ML model - 80% for training and 20
 
 ### DemoMLNet.Tasks.BinaryClassification / (Sentiment Analysis)
 
-#### **Algorithm used: LbfgsLogisticRegression**
+#### **Algorithms (Trainers) used:**
+mlContext.BinaryClassification.Trainers
+- .FastTree
+  - Accuracy: 77.06%
+  - Auc: 73.42%
+  - F1Score: 85.96%
+- .LbfgsLogisticRegression
+  - Accuracy: 76.50%
+  - Auc: 72.56%
+  - F1Score: 85.77%
+- .SdcaLogisticRegression
+  - Accuracy: 75.27%
+  - Auc: 71.86%
+  - F1Score: 84.03%
 
 A pre-trained model predicts if a certain comment that you write as an input will receive a positive (1) or negative (0) reaction from the users that read it.
 

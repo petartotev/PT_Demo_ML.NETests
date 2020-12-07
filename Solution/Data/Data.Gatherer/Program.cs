@@ -14,8 +14,8 @@ namespace DemoMLNet.Data.Gatherer
 
             // Will return 0 once the Gather methods are executed.
             int commentsFlagmanBg = dataGatherer.GatherDataFromFlagmanBg(FlagmanBg.Path).GetAwaiter().GetResult();
-            int commentsStorytelBg = dataGatherer.GatherDataFromStorytelBg(StorytelBg.Path).GetAwaiter().GetResult();
-            int commentsTrudBg = dataGatherer.GatherDataFromTrudBg(TrudBg.Path).GetAwaiter().GetResult();
+            //int commentsStorytelBg = dataGatherer.GatherDataFromStorytelBg(StorytelBg.Path).GetAwaiter().GetResult();
+            //int commentsTrudBg = dataGatherer.GatherDataFromTrudBg(TrudBg.Path).GetAwaiter().GetResult();
         }
     }
 }

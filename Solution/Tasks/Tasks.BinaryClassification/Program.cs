@@ -11,17 +11,16 @@
 
     public class Program
     {
-        // Add the following code to the line right above the Main method, to create a field to hold the recently downloaded dataset file path:
-        static readonly string _dataPath = Path.Combine(Environment.CurrentDirectory, "Data", "FlagmanBgCommentsData.txt");
+        // Added above the Main method - to create a field that holds the recently downloaded dataset file path:
+        static readonly string dataPath = Path.Combine(Environment.CurrentDirectory, "Data", "FlagmanBgCommentsData.txt");
 
         static void Main(string[] args)
         {
             Console.InputEncoding = Console.OutputEncoding = Encoding.UTF8;
 
-            // The MLContext class is a starting point for all ML.NET operations.
-            // Initializing mlContext creates a new ML.NET environment that can be shared across the model creation workflow objects.
-            // It's similar, conceptually, to DBContext in Entity Framework (Core).
-            MLContext mlContext = new MLContext(1234);
+            // MLContext is the starting point for all ML.NET operations. Conceptually similar to DBContext in Entity Framework Core.
+            // Initializing MLContext creates a new ML.NET environment that can be shared across the model creation workflow objects.
+            MLContext mlContext = new MLContext(1234); // 1234 is seed.
 
             TrainTestData splitDataView = LoadData(mlContext);
 
@@ -30,48 +29,43 @@
             Evaluate(mlContext, model, splitDataView.TestSet);
 
             UseModelWithSingleItem(mlContext, model);
-
             UseModelWithBatchItems(mlContext, model);
         }
 
         public static TrainTestData LoadData(MLContext mlContext)
         {
-            // Data in ML.NET is represented as an IDataView class. 
-            // IDataView is a flexible, efficient way of describing tabular data (numeric and text). 
+            // Data in ML.NET is represented as an IDataView interface - a flexible and efficient way of describing tabular data (numeric / text). 
             // Data can be loaded from a text file or in real time (for example, SQL database or log files) to an IDataView object.
+            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(dataPath, hasHeader: false);
 
-            IDataView dataView = mlContext.Data.LoadFromTextFile<SentimentData>(_dataPath, hasHeader: false);
-
-            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2); //default is 0.1
-
+            TrainTestData splitDataView = mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2); //default is 0.1 (10% of all lines will be used for testing).
             return splitDataView;
         }
 
         public static ITransformer BuildAndTrainModel(MLContext mlContext, IDataView splitTrainSet)
         {
-            var estimator = mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(SentimentData.SentimentText)) // Extract and transform the data
-                .Append(mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(labelColumnName: "Label", featureColumnName: "Features")); // Add a learning algorithm
-            // LbfgsLogisticRegression
-            // The SdcaLogisticRegressionBinaryTrainer is your classification training algorithm. 
+            // Extract and transform the data. Add a learning algorithm.
             // This is appended to the estimator and accepts the featurized SentimentText (Features) and the Label input parameters to learn from the historic data.
-
+            var estimator = mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(SentimentData.SentimentText))
+            .Append(mlContext.BinaryClassification.Trainers.SdcaNonCalibrated(labelColumnName: "Label", featureColumnName: "Features"));
+            
             Console.WriteLine("=============== Create and Train the Model ===============");
-            var model = estimator.Fit(splitTrainSet); // The Fit() method trains your model by transforming the dataset and applying the training.
-            Console.WriteLine("=============== End of training ===============");
-            Console.WriteLine();
+            // The Fit() method trains your model by transforming the dataset and applying the training.
+            var model = estimator.Fit(splitTrainSet);
+            Console.WriteLine("=============== End of training ===============\n");
 
-            return model; //Return the model trained to use for evaluation
+            return model;
         }
 
         public static void Evaluate(MLContext mlContext, ITransformer model, IDataView splitTestSet)
         {
             Console.WriteLine("=============== Evaluating Model accuracy with Test data===============");
 
-            IDataView predictions = model.Transform(splitTestSet);
             // Transform the splitTestSet data by adding the following code to Evaluate():
+            IDataView predictions = model.Transform(splitTestSet);
 
-            CalibratedBinaryClassificationMetrics metrics = mlContext.BinaryClassification.Evaluate(predictions, "Label");
             // Evaluate the model by adding the following as the next line of code in the Evaluate() method:
+            CalibratedBinaryClassificationMetrics metrics = mlContext.BinaryClassification.Evaluate(predictions, "Label");
 
             Console.WriteLine();
             Console.WriteLine("Model quality metrics evaluation");
@@ -80,6 +74,7 @@
             Console.WriteLine($"Auc: {metrics.AreaUnderRocCurve:P2}");
             Console.WriteLine($"F1Score: {metrics.F1Score:P2}");
             Console.WriteLine("=============== End of model evaluation ===============");
+
             // Once you have the prediction set (predictions), the Evaluate() method assesses the model, which compares the predicted values 
             // with the actual Labels in the test dataset and returns a CalibratedBinaryClassificationMetrics object on how the model is performing.
         }
@@ -95,14 +90,9 @@
 
             var resultPrediction = predictionFunction.Predict(sampleStatement);
 
-            Console.WriteLine();
-            Console.WriteLine("=============== Prediction Test of model with a single sample and test dataset ===============");
-
-            Console.WriteLine();
-            Console.WriteLine($"Sentiment: {resultPrediction.SentimentText} | Prediction: {(Convert.ToBoolean(resultPrediction.Prediction) ? "Positive" : "Negative")} | Probability: {resultPrediction.Probability} ");
-
-            Console.WriteLine("=============== End of Predictions ===============");
-            Console.WriteLine();
+            Console.WriteLine("\n=============== Prediction Test of model with a single sample and test dataset ===============");
+            Console.WriteLine($"\nSentiment: {resultPrediction.SentimentText} | Prediction: {(Convert.ToBoolean(resultPrediction.Prediction) ? "Positive" : "Negative")} | Probability: {resultPrediction.Probability} ");
+            Console.WriteLine("=============== End of Predictions ===============\n");
         }
 
         public static void UseModelWithBatchItems(MLContext mlContext, ITransformer model)
@@ -182,10 +172,7 @@
             // Use model to predict whether comment data is Positive (1) or Negative (0).
             IEnumerable<SentimentPrediction> predictedResults = mlContext.Data.CreateEnumerable<SentimentPrediction>(predictions, reuseRowObject: false);
 
-            Console.WriteLine();
-
-            Console.WriteLine("=============== Prediction Test of loaded model with multiple samples ===============");
-
+            Console.WriteLine("\n=============== Prediction Test of loaded model with multiple samples ===============");
             foreach (SentimentPrediction prediction in predictedResults)
             {
                 Console.WriteLine($"Sentiment: {prediction.SentimentText} | Prediction: {(Convert.ToBoolean(prediction.Prediction) ? "Positive" : "Negative")} | Probability: {prediction.Probability} ");
@@ -196,7 +183,6 @@
 }
 
 // https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/sentiment-analysis
-
 // CREATE A CONSOLE APPLICATION
 // Create Data folder.
 
@@ -220,5 +206,3 @@
 // Program.cs => add new method LoadData()
 
 // BUILD AND TRAIN THE MODEL
-
-// STEPS

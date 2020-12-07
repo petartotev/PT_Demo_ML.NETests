@@ -31,12 +31,11 @@ namespace DemoMLNet.Data.Gatherer
         /// </summary>
         /// <param name="pathToFile">Path to the file in which a new 'comment, vote binary ratio' line is appended for each article crawled.</param>
         /// <returns>0 if the method is executed successfully.</returns>
-        public async Task<int> GatherDataFromFlagmanBg(string pathToFile)
+        public async Task<int> GatherDataFromFlagmanBg(string pathToFile, int articleId = 219000)
         {
-            for (var articleId = 219000; articleId >= 1; articleId--)
+            for (var id = articleId; id >= 1; id--)
             {
-                Console.Write($"{articleId} => ");
-                Console.Write('^');
+                PrintActionSeparator(id);
 
                 string htmlContent = null;
 
@@ -44,14 +43,13 @@ namespace DemoMLNet.Data.Gatherer
                 {
                     try
                     {
-                        var response = await client.GetAsync(FlagmanBg.Url + articleId);
+                        var response = await client.GetAsync(FlagmanBg.Url + id);
                         htmlContent = await response.Content.ReadAsStringAsync();
                         break;
                     }
                     catch
                     {
-                        Console.Write('!');
-                        Thread.Sleep(500);
+                        PrintException();
                     }
                 }
 
@@ -126,12 +124,11 @@ namespace DemoMLNet.Data.Gatherer
         /// </summary>
         /// <param name="pathToFile">>Path to the file in which a new 'book, category, summary' line is appended for each article crawled.</param>
         /// <returns>0 if the method is executed successfully.</returns>
-        public async Task<int> GatherDataFromStorytelBg(string pathToFile)
+        public async Task<int> GatherDataFromStorytelBg(string pathToFile, int audioBookId = 2000000)
         {
-            for (int idBookAudio = 2000000; idBookAudio >= 1; idBookAudio--)
+            for (int id = audioBookId; id >= 1; id--)
             {
-                Console.Write($"{idBookAudio} ->");
-                Console.Write(" . ");
+                PrintActionSeparator(id);
 
                 string htmlContent = null;
 
@@ -139,14 +136,13 @@ namespace DemoMLNet.Data.Gatherer
                 {
                     try
                     {
-                        var response = await client.GetAsync(StorytelBg.Url + idBookAudio);
+                        var response = await client.GetAsync(StorytelBg.Url + id);
                         htmlContent = await response.Content.ReadAsStringAsync();
                         break;
                     }
                     catch
                     {
-                        Console.Write("catch!");
-                        Thread.Sleep(500);
+                        PrintException();
                     }
                 }
 
@@ -182,7 +178,7 @@ namespace DemoMLNet.Data.Gatherer
                 }
 
                 // WRITE TO FILE
-                string line = $"{idBookAudio},{category},\"{summary}\"";
+                string line = $"{id},{category},\"{summary}\"";
                 AppendLineToFile(line, pathToFile);
             }
 
@@ -195,12 +191,11 @@ namespace DemoMLNet.Data.Gatherer
         /// </summary>
         /// <param name="pathToFile">Path to the file in which a new 'book, category, summary' line is appended for each article crawled.</param>
         /// <returns>0 if the method is executed successfully.</returns>
-        public async Task<int> GatherDataFromTrudBg(string pathToFile)
+        public async Task<int> GatherDataFromTrudBg(string pathToFile, int bookId = 11066)
         {
-            for (int bookId = 11066; bookId >= 1; bookId--)
+            for (int id = bookId; id >= 1; id--)
             {
-                Console.Write($"{bookId} => ");
-                Console.Write('^');
+                PrintActionSeparator(id);
 
                 string htmlContent = null;
 
@@ -208,14 +203,13 @@ namespace DemoMLNet.Data.Gatherer
                 {
                     try
                     {
-                        var response = await client.GetAsync(TrudBg.Url + bookId);
+                        var response = await client.GetAsync(TrudBg.Url + id);
                         htmlContent = await response.Content.ReadAsStringAsync();
                         break;
                     }
                     catch
                     {
-                        Console.Write('!');
-                        Thread.Sleep(500);
+                        PrintException();
                     }
                 }
 
@@ -272,7 +266,7 @@ namespace DemoMLNet.Data.Gatherer
                 {
                     if (TrudBg.ListGenresToSearch.Contains(genre))
                     {
-                        string line = $"{bookId},{genre},\"{descriptionClean}\"";
+                        string line = $"{id},{genre},\"{descriptionClean}\"";
                         AppendLineToFile(line, pathToFile);
                     }
                 }
@@ -358,6 +352,18 @@ namespace DemoMLNet.Data.Gatherer
 
             // int.Parse(Vote Count string) and return it.
             return int.Parse(commentUpvoteCountString);
+        }
+
+        private static void PrintActionSeparator(int index)
+        {
+            Console.Write($"{index}");
+            Console.Write(" | ");
+        }
+
+        private static void PrintException()
+        {
+            Console.Write("> catch!");
+            Thread.Sleep(500);
         }
     }
 }
