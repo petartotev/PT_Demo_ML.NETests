@@ -11,9 +11,6 @@ This repository contains a solution with a number of .NET Core projects that exp
 ## Technologies
 
 - Microsoft ML\.NET
-  - LightGbm
-  - FastTree
-  - Onnx Runtime/Transformer
 - AngleSharp
 
 ## Contents
@@ -28,8 +25,10 @@ The 'PT_Demo_ML.NETests' solution consists of 2 directories:
   - MulticlassClassification
     - DemoMLNet.Tasks.MulticlassClassification
   - ObjectDetection
-    - DemoMLNet.Tasks.ObjectDetection .Console
-    - DemoMLNet.Tasks.ObjectDetection .Web
+    - DemoMLNet.Tasks.ObjectDetection\.Console
+    - DemoMLNet.Tasks.ObjectDetection\.Web
+  - Recommendation
+    - DemoMLNet.Tasks.Recommendation
   - Regression
     - DemoMLNet.Tasks.Regression
 
@@ -41,7 +40,8 @@ The 'PT_Demo_ML.NETests' solution consists of 2 directories:
 
 ### DemoMLNet.Data.Gatherer (Data Gatherer / web crawler)
 
-A DataGatherer class is implemented to play the role of a **web crawler**.  
+DemoMLNet.Data.Gatherer is a .NET Core 3.1 Console Application.  
+It is implemented to play the role of a **web crawler**.  
 Once an instance of DataGatherer is instantiated it also creates a new HttpClient and AngleSharp HtmlParser.
 They are used within a for loop that goes through a number of pages with URLs that end with an article/category number, for example:  
 https://www.flagman.bg/article/{articleId}  
@@ -74,6 +74,7 @@ mlContext.BinaryClassification.Trainers
   - Auc: 71.86%
   - F1Score: 84.03%
 
+DemoMLNet.Tasks.BinaryClassification is a .NET Core 3.1 Console Application.  
 A pre-trained model predicts if a certain comment that you write as an input will receive a positive (1) or negative (0) reaction from the users that read it.
 
 The target of the sentiment analysis is 'Flagman' - a local online media in Burgas, Bulgaria.  
@@ -111,7 +112,8 @@ mlContext.MulticlassClassification.Trainers
   - Auc: 
   - F1Score: 
 
-A pre-trained model predicts the probable category of a book/movie/joke - based on a summary (text) about it that you give as an input.
+DemoMLNet.Tasks.MulticlassClassification is a .NET Core 3.1 Console Application.  
+A pre-trained model predicts the category of a book/movie/joke - based on a summary (text) about it that you give as an input.
 
 The target of the multiclass classification is Storytel.bg - a Bulgarian platform for audio books etc.  
 Link: https://www.storytel.com/bg/bg/
@@ -120,7 +122,8 @@ Link: https://www.storytel.com/bg/bg/
 
 ### Object Detection
 
-### DemoMLNet.Tasks.ObjectDetection .Console/Web
+### DemoMLNet.Tasks.ObjectDetection\.Console
+### DemoMLNet.Tasks.ObjectDetection\.Web
 
 #### **Algorithm used: OnnxModelScorer ( TinyYolo2_model.onnx )**
 
@@ -128,6 +131,15 @@ Finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
 
 ---
 
+### Recommendation
+### DemoMLNet.Tasks.Recommendation
+
+The source used for this demo came from kaggle.com.  
+Link: https://www.kaggle.com/arashnic/book-recommendation-dataset  
+Book Recommendation Dataset includes 3 tables:
+- Books.csv
+- Ratings.csv 
+- Users.csv - ingored
 ## Credits
 
 Implementing my first ML.NET project was a piece of cake thanks to:

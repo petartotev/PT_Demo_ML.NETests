@@ -6,7 +6,7 @@ namespace DemoMLNet.Data.Gatherer
 {
     public class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.InputEncoding = Console.OutputEncoding = Encoding.UTF8;
 

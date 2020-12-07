@@ -14,7 +14,7 @@
         // Added above the Main method - to create a field that holds the recently downloaded dataset file path:
         static readonly string dataPath = Path.Combine(Environment.CurrentDirectory, "Data", "FlagmanBgCommentsData.txt");
 
-        static void Main()
+        public static void Main()
         {
             Console.InputEncoding = Console.OutputEncoding = Encoding.UTF8;
 
