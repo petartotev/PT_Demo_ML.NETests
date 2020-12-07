@@ -4,7 +4,7 @@
 
 This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET Library.
 
-![Horse Object Detected](PT_Demo_ML.NETests_cover.jpg)
+![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
 
 ## Technologies
 
