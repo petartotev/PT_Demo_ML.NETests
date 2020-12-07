@@ -1,6 +1,6 @@
 ﻿// AngleSharp is a .NET library which gives the ability to parse angle bracket based hyper-texts like HTML, SVG etc.
+using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
-using PetarTotev.Net.DSA.MyCollections;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,18 +23,20 @@ namespace DemoMLNet.Data.Gatherer
             client = new HttpClient();
         }
 
-        public async Task<int> GatherDataFromFlagmanBg(string pathToSaveFile)
+        /// <summary>
+        /// https://www.flagman.bg/ is a local online media in the district of Burgas, Bulgaria.
+        /// It has articles on politics, society, local municipalities, sport and investigation.
+        /// Flagman.bg was a choice for the demo as the urls of the articles are easy to put into a for-loop crawler.
+        /// Each article has unique id included in the query string - https://www.flagman.bg/article/218139.
+        /// </summary>
+        /// <param name="pathToFile">Path to the file in which a new 'comment, vote binary ratio' line is appended for each article crawled.</param>
+        /// <returns>0 if the method is executed successfully.</returns>
+        public async Task<int> GatherDataFromFlagmanBg(string pathToFile)
         {
-            // Creates a parser coming from the AngleSharp library (default options and context).
-            // https://www.flagman.bg/ is a local online media in the district of Burgas, Bulgaria.
-            // It has articles about politics, society, local municipalities, sport and investigation.
-            // The reason flagman.bg was chosen for the demo is that the urls of the articles there are easily put into a for-loop.
-            // Each article has its unique id that comes in the query string - for example https://www.flagman.bg/article/218139.
             for (var articleId = 219000; articleId >= 1; articleId--)
             {
                 Console.Write($"{articleId} => ");
                 Console.Write('^');
-
 
                 string htmlContent = null;
 
@@ -58,23 +60,22 @@ namespace DemoMLNet.Data.Gatherer
                     break;
                 }
 
+                // AngleSharp parses the string response to understandable Html.
                 var document = await parser.ParseDocumentAsync(htmlContent);
 
                 // Get the Comments section.
                 var htmlComments = document.GetElementsByClassName("commentsBox");
 
-                if (htmlComments.Length == 0)
+                if (htmlComments == null || htmlComments.Length == 0)
                 {
                     continue;
                 }
 
                 // Foreach comment in the Comments section...
                 foreach (var htmlComment in htmlComments)
-                {
-                    int commentBinaryValue;
-
+                {      
                     // Get the comment content.
-                    var commentText = htmlComment
+                    string commentText = htmlComment
                         .GetElementsByClassName("commentText")
                         .FirstOrDefault()
                         .InnerHtml
@@ -84,63 +85,34 @@ namespace DemoMLNet.Data.Gatherer
                         .Replace("<br>", " ")
                         .Trim();
 
-                    if (commentText == null)
+                    if (string.IsNullOrEmpty(commentText))
                     {
                         continue;
                     }
 
-                    // Get the Up Vote Count as string and clean it.
-                    string commentUpvoteCountString = htmlComment
-                        .GetElementsByClassName("head").FirstOrDefault()
-                        .GetElementsByClassName("rating text-right").FirstOrDefault()
-                        .GetElementsByClassName("text-center ml-2").FirstOrDefault()
-                        .GetElementsByClassName("commentsUp").FirstOrDefault()
-                        .InnerHtml
-                        .ToString()
-                        .Replace("\n", string.Empty)
-                        .Replace("\t", string.Empty)
-                        .Replace("<br>", " ")
-                        .Trim();
+                    int commentUpvoteCount = GetFlagmanBgCommentVoteAsIntegerByHtmlClassName(htmlComment, "commentsUp");
+                    int commentDownvoteCount = GetFlagmanBgCommentVoteAsIntegerByHtmlClassName(htmlComment, "commentsDown");
 
-                    // int.Parse the Up Vote Count string.
-                    int commentUpvoteCount = int.Parse(commentUpvoteCountString);
-
-                    // Get the Down Vote Count as string and clean it.
-                    string commentDownvoteCountString = htmlComment
-                        .GetElementsByClassName("head").FirstOrDefault()
-                        .GetElementsByClassName("rating text-right").FirstOrDefault()
-                        .GetElementsByClassName("text-center").FirstOrDefault()
-                        .GetElementsByClassName("commentsDown").FirstOrDefault()
-                        .InnerHtml
-                        .ToString().
-                        Replace("\n", string.Empty)
-                        .Replace("\t", "")
-                        .Replace("<br>", " ")
-                        .Trim();
-
-                    // int.Parse the Down Vote Count string.
-                    int commentDownvoteCount = int.Parse(commentDownvoteCountString);
-
-                    // Deep doubts about how to define a "positive" / "negative" comment criteria.
-                    // After a few attempts I finally tried with:
+                    // What is really a "positive" / "negative" comment? Let's assume that:
                     // A positive comment is the one that has 30 more positive comments compared to the ones that are negative.
                     // A negative comment is the one that has 15 more negative comments compared to the ones that are positive.
+
+                    // Get the binary value of the comment - positive (1) or negative (0).
+                    int commentBinaryValue;
+
                     if ((commentUpvoteCount - commentDownvoteCount >= 30) || (commentDownvoteCount - commentUpvoteCount >= 15))
                     {
                         if (commentUpvoteCount - commentDownvoteCount >= 30)
-                        {
-                            // positive
-                            commentBinaryValue = 1;
+                        {                            
+                            commentBinaryValue = 1; // positive
                         }
                         else
-                        {
-                            // negative
-                            commentBinaryValue = 0;
+                        {                            
+                            commentBinaryValue = 0; // negative
                         }
 
-                        string myLineToWriteToFile = $"{commentText}\t{commentBinaryValue}";
-
-                        File.AppendAllText($@"{pathToSaveFile}", myLineToWriteToFile + Environment.NewLine);
+                        string line = $"{commentText}\t{commentBinaryValue}";
+                        AppendLineToFile(line, pathToFile);
                     }
                 }
             }
@@ -148,7 +120,13 @@ namespace DemoMLNet.Data.Gatherer
             return 0;
         }
 
-        public async Task<int> GatherDataFromStorytelBg(string pathToSaveFile)
+        /// <summary>
+        /// https://www.storytel.com/ is a Bulgarian platform for audio books.
+        /// This platform was very suitable for the purposes of this demo, as each book belongs to a certain category.
+        /// </summary>
+        /// <param name="pathToFile">>Path to the file in which a new 'book, category, summary' line is appended for each article crawled.</param>
+        /// <returns>0 if the method is executed successfully.</returns>
+        public async Task<int> GatherDataFromStorytelBg(string pathToFile)
         {
             for (int idBookAudio = 2000000; idBookAudio >= 1; idBookAudio--)
             {
@@ -180,7 +158,6 @@ namespace DemoMLNet.Data.Gatherer
                 var document = await parser.ParseDocumentAsync(htmlContent);
 
                 // CATEGORY
-
                 if (document.QuerySelectorAll("[itemprop=\"category\"]").Count() <= 0)
                 {
                     continue;
@@ -190,7 +167,6 @@ namespace DemoMLNet.Data.Gatherer
                 category = CleanStringFromHtmlElements(category);
 
                 // SUMMARY
-
                 if (document.QuerySelectorAll("[itemprop=\"description\"]").Count() <= 0)
                 {
                     continue;
@@ -200,67 +176,27 @@ namespace DemoMLNet.Data.Gatherer
                 summary = CleanStringFromHtmlElements(summary);
 
                 // IF (NO CATEGORY OR NO SUMMARY) => CONTINUE!
-
                 if (string.IsNullOrEmpty(summary) || string.IsNullOrEmpty(category))
                 {
                     continue;
                 }
 
                 // WRITE TO FILE
-
-                string myLineToWriteToFile = $"{idBookAudio},{category},\"{summary}\"";
-
-                File.AppendAllText($@"{pathToSaveFile}", myLineToWriteToFile + Environment.NewLine);
+                string line = $"{idBookAudio},{category},\"{summary}\"";
+                AppendLineToFile(line, pathToFile);
             }
 
             return 0;
         }
 
-        public async Task<int> GatherDataFromTrudBg(string pathToSaveFile)
+        /// <summary>
+        /// https://trud.bg/ is a national media and publishing house in Bulgaria.
+        /// Its books are organized into categories, so it is again easy to get (category <> summary) information.
+        /// </summary>
+        /// <param name="pathToFile">Path to the file in which a new 'book, category, summary' line is appended for each article crawled.</param>
+        /// <returns>0 if the method is executed successfully.</returns>
+        public async Task<int> GatherDataFromTrudBg(string pathToFile)
         {
-            MyList<string> listGenresToSearch = new MyList<string>()
-            {
-                //"Афоризми",
-                //"Българска литература",
-                "Български романи",
-                //"Драма",
-                //"Други",
-                //"Езотерика и астрология",
-                "Енциклопедии",
-                //"За 3. и 4. клас",
-                //"За 7. и 8. клас",
-                //"За 9. и 10. клас",
-                //"За 11. и 12. клас",
-                //"За кандидат-шофьори",
-                //"За студенти",
-                "Истории",
-                "Исторически романи",
-                "Криминални романи",
-                "Кулинарни книги",
-                "Медицина",
-                "Мемоари и обществено-политическа литература",
-                //"Наръчници",
-                //"НАМАЛЕНИ КНИГИ",
-                //"Научна литература",
-                //"Повест",
-                "Поезия",
-                "Приказки",
-                "Приключенски романи",
-                //"Проза",
-                "Разкази",
-                //"Религия и етнология",
-                "Речници",
-                //"Сексът от древността до днес",
-                //"Справочна литература",
-                //"Трилър",
-                "Фантастика и фентъзи",
-                //"Фолклор и митология",
-                //"Художествена литература",
-                //"Хумор",
-                //"Чуждестранна литература",
-                //"Чуждестранни романи",
-            };
-
             for (int bookId = 11066; bookId >= 1; bookId--)
             {
                 Console.Write($"{bookId} => ");
@@ -273,9 +209,7 @@ namespace DemoMLNet.Data.Gatherer
                     try
                     {
                         var response = await client.GetAsync(TrudBg.Url + bookId);
-
                         htmlContent = await response.Content.ReadAsStringAsync();
-
                         break;
                     }
                     catch
@@ -336,11 +270,10 @@ namespace DemoMLNet.Data.Gatherer
 
                 if (!string.IsNullOrEmpty(genre) && !string.IsNullOrEmpty(descriptionClean) && !descriptionClean.Contains("<xml>"))
                 {
-                    if (listGenresToSearch.Contains(genre))
+                    if (TrudBg.ListGenresToSearch.Contains(genre))
                     {
-                        string myLineToWriteToFile = $"{bookId},{genre},\"{descriptionClean}\"";
-
-                        File.AppendAllText($@"{pathToSaveFile}", myLineToWriteToFile + Environment.NewLine);
+                        string line = $"{bookId},{genre},\"{descriptionClean}\"";
+                        AppendLineToFile(line, pathToFile);
                     }
                 }
             }
@@ -350,6 +283,7 @@ namespace DemoMLNet.Data.Gatherer
 
         private static string CleanStringFromHtmlElements(string inputString)
         {
+            // Clean input string from all html tags.
             string outputString = inputString
                 .Replace("<br>", "")
                 .Replace("</br>", "")
@@ -395,8 +329,35 @@ namespace DemoMLNet.Data.Gatherer
             }
 
             outputString = CleanStringFromHtmlElements(outputString);
-
             return outputString;
+        }
+
+        private static void AppendLineToFile(string line, string path)
+        {
+            File.AppendAllText($@"{path}", line + Environment.NewLine);
+        }
+
+        private static int GetFlagmanBgCommentVoteAsIntegerByHtmlClassName(IElement htmlComment, string className)
+        {
+            // Get the Vote Count as string and clean it.
+            string commentUpvoteCountString = htmlComment
+                .GetElementsByClassName("head")
+                .FirstOrDefault()
+                .GetElementsByClassName("rating text-right")
+                .FirstOrDefault()
+                .GetElementsByClassName("text-center ml-2")
+                .FirstOrDefault()
+                .GetElementsByClassName($"{className}")
+                .FirstOrDefault()
+                .InnerHtml
+                .ToString()
+                .Replace("\n", string.Empty)
+                .Replace("\t", string.Empty)
+                .Replace("<br>", " ")
+                .Trim();
+
+            // int.Parse(Vote Count string) and return it.
+            return int.Parse(commentUpvoteCountString);
         }
     }
 }
