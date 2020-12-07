@@ -1,7 +1,7 @@
 ﻿// AngleSharp is a .NET library which gives the ability to parse angle bracket based hyper-texts like HTML, SVG etc.
 using AngleSharp.Html.Parser;
+using PetarTotev.Net.DSA.MyCollections;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -218,7 +218,7 @@ namespace DemoMLNet.Data.Gatherer
 
         public async Task<int> GatherDataFromTrudBg(string pathToSaveFile)
         {
-            List<string> listGenresToSearch = new List<string>()
+            MyList<string> listGenresToSearch = new MyList<string>()
             {
                 //"Афоризми",
                 //"Българска литература",
