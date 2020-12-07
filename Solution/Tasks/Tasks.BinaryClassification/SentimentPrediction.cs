@@ -14,7 +14,8 @@
     }
 }
 
-// SentimentPrediction is the prediction class used after model training. It inherits from SentimentData so that the input SentimentText can be displayed along with the output prediction. 
+// SentimentPrediction is the prediction class used after model training. 
+// It inherits from SentimentData so that the input SentimentText can be displayed along with the output prediction. 
 // The Prediction boolean is the value that the model predicts when supplied with new input SentimentText.
    
 // The output class SentimentPrediction contains two other properties calculated by the model: 

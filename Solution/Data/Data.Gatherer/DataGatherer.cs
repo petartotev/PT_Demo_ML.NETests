@@ -8,12 +8,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static DemoMLNet.Data.Gatherer.DataSources.StaticDataSources;
 
 namespace DemoMLNet.Data.Gatherer
 {
     public class DataGatherer
     {
-        private HtmlParser parser;
+        private HtmlParser parser; //using AngleSharp.Html.Parser.HtmlParser
         private HttpClient client;
 
         public DataGatherer()
@@ -34,7 +35,6 @@ namespace DemoMLNet.Data.Gatherer
                 Console.Write($"{articleId} => ");
                 Console.Write('^');
 
-                var url = $"https://www.flagman.bg/article/{articleId}";
 
                 string htmlContent = null;
 
@@ -42,7 +42,7 @@ namespace DemoMLNet.Data.Gatherer
                 {
                     try
                     {
-                        var response = await client.GetAsync(url);
+                        var response = await client.GetAsync(FlagmanBg.Url + articleId);
                         htmlContent = await response.Content.ReadAsStringAsync();
                         break;
                     }
@@ -155,15 +155,13 @@ namespace DemoMLNet.Data.Gatherer
                 Console.Write($"{idBookAudio} ->");
                 Console.Write(" . ");
 
-                var url = $"https://www.storytel.com/bg/bg/books/{idBookAudio}";
-
                 string htmlContent = null;
 
                 for (int i = 0; i < 10; i++)
                 {
                     try
                     {
-                        var response = await client.GetAsync(url);
+                        var response = await client.GetAsync(StorytelBg.Url + idBookAudio);
                         htmlContent = await response.Content.ReadAsStringAsync();
                         break;
                     }
@@ -268,15 +266,13 @@ namespace DemoMLNet.Data.Gatherer
                 Console.Write($"{bookId} => ");
                 Console.Write('^');
 
-                var url = $"https://trud.cc/?cid=9&pid={bookId}";
-
                 string htmlContent = null;
 
                 for (int i = 0; i < 10; i++)
                 {
                     try
                     {
-                        var response = await client.GetAsync(url);
+                        var response = await client.GetAsync(TrudBg.Url + bookId);
 
                         htmlContent = await response.Content.ReadAsStringAsync();
 

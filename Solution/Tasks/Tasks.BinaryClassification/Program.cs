@@ -1,13 +1,12 @@
 ﻿namespace DemoMLNetSentimentAnalysisConsoleApp
 {
+    using Microsoft.ML;
+    using Microsoft.ML.Data;
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;    
+    using System.Linq;
     using System.Text;
-
-    using Microsoft.ML;
-    using Microsoft.ML.Data;
     using static Microsoft.ML.DataOperationsCatalog;
 
     public class Program
@@ -22,7 +21,6 @@
             // The MLContext class is a starting point for all ML.NET operations.
             // Initializing mlContext creates a new ML.NET environment that can be shared across the model creation workflow objects.
             // It's similar, conceptually, to DBContext in Entity Framework (Core).
-
             MLContext mlContext = new MLContext(1234);
 
             TrainTestData splitDataView = LoadData(mlContext);
@@ -66,7 +64,7 @@
         }
 
         public static void Evaluate(MLContext mlContext, ITransformer model, IDataView splitTestSet)
-        {        
+        {
             Console.WriteLine("=============== Evaluating Model accuracy with Test data===============");
 
             IDataView predictions = model.Transform(splitTestSet);
@@ -193,7 +191,7 @@
                 Console.WriteLine($"Sentiment: {prediction.SentimentText} | Prediction: {(Convert.ToBoolean(prediction.Prediction) ? "Positive" : "Negative")} | Probability: {prediction.Probability} ");
             }
             Console.WriteLine("=============== End of predictions ===============");
-        }        
+        }
     }
 }
 
@@ -222,3 +220,5 @@
 // Program.cs => add new method LoadData()
 
 // BUILD AND TRAIN THE MODEL
+
+// STEPS
