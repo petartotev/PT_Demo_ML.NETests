@@ -2,9 +2,10 @@
 
 ## General Information
 
-This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET Library.
+This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET library.
 
-_This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do. They help me understand the steps of machine learning 'gather info' > 'build model' > 'train model' > 'test model' > 'evaluate model' > 'use model' better._
+_This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do. They help me understand easier the steps of machine learning:  
+'gather info' > 'build model' > 'train model' > 'test model' > 'evaluate model' > 'use model'._
 
 ![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
 
@@ -17,7 +18,7 @@ _This is an educational project. That's why there are a lot of comments with exp
 
 ## Contents
 
-The 'PT_Demo_ML.NETests' solution consists of 2 directories:
+'PT_Demo_ML.NETests' solution consists of 6 projects in 2 directories:
 
 - Data
   - DemoMLNet.Data.Gatherer
@@ -36,33 +37,31 @@ The 'PT_Demo_ML.NETests' solution consists of 2 directories:
 
 ---
 
-### Data
+## Data
 
 ---
 
-### DemoMLNet.Data.Gatherer (Data Gatherer / web crawler)
+## DemoMLNet.Data.Gatherer (Web Crawler)
 
 DemoMLNet.Data.Gatherer is a .NET Core 3.1 Console Application.  
-It is implemented to play the role of a **web crawler**.  
-Once an instance of DataGatherer is instantiated it creates new HttpClient and AngleSharp HtmlParser objects.
+It is implemented to play the role of a web crawler.  
+Once an instance of DataGatherer is instantiated it creates new HttpClient and AngleSharp HtmlParser objects.  
 They are used within a for-loop that goes through a number of pages with URLs that end with an article/category number.  
 For example: https://www.flagman.bg/article/{articleId}  
-The result of this crawling is a string. It is cleaned from all its html elements and is saved as a .txt file.  
-The .txt files gathered would be used to train the ML models - 80% for training and 20% for evaluating the accuracy of the algorithm used.
+The result of this crawling is a string. It is cleaned from all its html tag elements and is saved as a .txt file.  
+The .txt files gathered would be used to train a ML model (usually 80% for training and 20% for evaluating the accuracy of the algorithm used).
 
 ---
 
-### Tasks
+## Tasks
 
 ---
 
-### BinaryClassification
+## BinaryClassification
 
-### DemoMLNet.Tasks.BinaryClassification / (Sentiment Analysis)
+### DemoMLNet.Tasks.BinaryClassification (Sentiment Analysis)
 
-#### **Algorithms (Trainers) used:**
-
-mlContext.BinaryClassification.Trainers
+#### **Algorithms** (MLContext.BinaryClassification.Trainers):
 
 - .FastTree
   - Accuracy: 77.06%
@@ -77,36 +76,23 @@ mlContext.BinaryClassification.Trainers
   - Auc: 71.86%
   - F1Score: 84.03%
 
+#### **Data Source:**
+
+Link: https://www.flagman.bg/  
+For this project the target of the sentiment analysis is 'Flagman' - a local online media in Burgas, Bulgaria.
+
+#### **Summary:**
+
 DemoMLNet.Tasks.BinaryClassification is a .NET Core 3.1 Console Application.  
-A pre-trained model predicts if a certain comment that you write as an input will receive a positive (1) or negative (0) reaction from the users that read it.
-
-The target of the sentiment analysis is 'Flagman' - a local online media in Burgas, Bulgaria.  
-Link: https://www.flagman.bg/
-
-- all the positive comments with (upvote : downvote) ratio of 30 : 1 or more
-- all the negative comments with (upvote : downvote) ratio of 1 : 15 or less.
-
-Foreach comment that matches these conditions it File.Appends() a new line in the format:
-
-$"{commentText}\t{commentBinaryValue}"
-
-2. The text file is split into two - 80% of it would be used for training the model and 20% - for testing it.
-
-3. Then the .txt with all the comments (content, value) inside is used to train the ML model with the algorithm that comes from the Microsoft.ML library.
-
-4. Now the model could be evaluated with those 20% separated in step 2.
-
-5. Finally, you can give the pre-trained model some text and see what it predicts (positive (1) or negative (0)) and how sure it is about it (probability).
+A pre-trained model predicts if a certain comment that you write as input would be more likely to receive a positive (1) or a negative (0) reaction from the users that read it.
 
 ---
 
-### Multiclass Classification
+## Multiclass Classification
 
 ### DemoMLNet.Tasks.MulticlassClassification
 
-#### **Algorithms (Trainers) used:**
-
-mlContext.MulticlassClassification.Trainers
+#### **Algorithms** (MLContext.MulticlassClassification.Trainers):
 
 - .SdcaMaximumEntropy
   - Accuracy: 77.06%
@@ -117,54 +103,96 @@ mlContext.MulticlassClassification.Trainers
   - Auc:
   - F1Score:
 
-DemoMLNet.Tasks.MulticlassClassification is a .NET Core 3.1 Console Application.  
-A pre-trained model predicts the category of a book/movie/joke - based on a summary (text) about it that you give as an input.
+#### **Data Source:**
 
-The target of the multiclass classification is Storytel.bg - a Bulgarian platform for audio books etc.  
-Link: https://www.storytel.com/bg/bg/
+Link: https://www.storytel.com/bg/bg/  
+The target of the multiclass classification is Storytel.bg - a Bulgarian platform for audio books etc.
+
+#### **Summary:**
+
+DemoMLNet.Tasks.MulticlassClassification is a .NET Core 3.1 Console Application.  
+A pre-trained model predicts the category of a book/movie/joke - based on a summary (text) about it that one defines as an input.
 
 ---
 
-### Object Detection
+## Object Detection
 
 ### DemoMLNet.Tasks.ObjectDetection\.Console
 
-DemoMLNet.Tasks.ObjectDetection\.Console is a .NET Core 3.1 Console Application.
+#### **Algorithm:**
+
+OnnxModelScorer (TinyYolo2_model.onnx)
+
+#### **Summary:**
+
+DemoMLNet.Tasks.ObjectDetection\.Console is a .NET Core 3.1 Console Application.  
+It uses a pre-trained ONNX model that analyzes a picture and evaluates if there are certain objects that are familiar for the model (person, dog, horse, bike, car etc.).
 
 ### DemoMLNet.Tasks.ObjectDetection\.Web
+
+#### **Summary:**
 
 DemoMLNet.Tasks.ObjectDetection\.Web is a .NET Core 3.1 Web (MVC) Application.  
 Its only purpose is to create a better environment for the dev to upload new images and evaluate the results that the ONNX prediction model provides.
 
 ![Person Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_webapp.jpg)
 
-#### **Algorithm used: OnnxModelScorer ( TinyYolo2_model.onnx )**
-
-Finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
-
 ---
 
-### Recommendation
+## Recommendation
 
 ### DemoMLNet.Tasks.Recommendation
 
-The source used for this demo came from kaggle.com.  
+#### **Algorithm:**
+
+MLContext.Recommendation().Trainers.MatrixFactorization()
+
+#### **Data Source:**
+
 Link: https://www.kaggle.com/arashnic/book-recommendation-dataset  
-Book Recommendation Dataset includes 3 tables:
+The source used for this demo came from kaggle.com.  
+The Dataset includes 3 tables:
 
 - Books.csv
 - Ratings.csv
 - Users.csv - ingored
+  Those are gathered in a single table with only 2 columns (UsersIds, BooksIds).  
+  In addition, only those that are recommended with a rating between 8 and 10 (highly liked) are taken.
 
-These datasets are simplified to a single table that includes UsersIds to BooksIds that are recommended with rating between 8 and 10 (highly liked).
+#### **Summary:**
 
-This information is used to evaluate if a random User would like a Book, based on network of the recommended books within the UserId-BookId table.
+Once gathered, the model evaluates if a User would like a Book - based on a network of recommended books within the table.
+
+---
+
+## Regression
+
+### DemoMLNet.Tasks.Regression
+
+#### **Algorithm:**
+
+MLContext.Regression.Trainers.LightGbm
+
+#### **Data Source:**
+
+Link: https://www.kaggle.com/adityadesai13/used-car-dataset-ford-and-mercedes  
+The source used for this demo came from kaggle.com.  
+The Dataset includes a number of tables that I gathered into 1 common table with the following columns:  
+model,year,price,transmission,mileage,fuelType,tax,mpg,engineSize
+
+#### **Summary:**
+
+Once trained, the model can test input and evaluate its hypothetical price, based on the other properties of the input (model, mileage, year, transmission).
+
+---
 
 ## Credits
 
+---
+
 Implementing my first ML.NET project was a piece of cake thanks to:
 
-- https://dotnet.microsoft.com/learn/ml-dotnet - a free tutorials by Microsoft about Machine Learning with ML.NET
-- https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a great lecture by Nikolay Kostov (@NikolayIT) presented in Software University (SoftUni) in 2020.
+- https://dotnet.microsoft.com/learn/ml-dotnet - a free set of tutorials by Microsoft about Machine Learning with ML\.NET
+- https://www.youtube.com/watch?v=dluB5VE1m1k&feature=emb_logo - a great lecture by Nikolay Kostov (@NikolayIT) presented in SoftUni in 2020.
 
 \~THE END\~
