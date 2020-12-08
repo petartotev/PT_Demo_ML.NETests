@@ -4,7 +4,7 @@
 
 This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET Library.
 
-*This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do - just for me to understand the steps of machine learning better.*
+_This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do. They help me understand the steps of machine learning 'gather info' > 'build model' > 'train model' > 'test model' > 'evaluate model' > 'use model' better._
 
 ![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
 
@@ -47,7 +47,7 @@ Once an instance of DataGatherer is instantiated it creates new HttpClient and A
 They are used within a for-loop that goes through a number of pages with URLs that end with an article/category number.  
 For example: https://www.flagman.bg/article/{articleId}  
 The result of this crawling is a string. It is cleaned from all its html elements and is saved as a .txt file.  
-The .txt files gathered would be used to train the ML models - 80% for training and 20% for evaluating the accuracy of the algorithm used.  
+The .txt files gathered would be used to train the ML models - 80% for training and 20% for evaluating the accuracy of the algorithm used.
 
 ---
 
@@ -60,7 +60,9 @@ The .txt files gathered would be used to train the ML models - 80% for training 
 ### DemoMLNet.Tasks.BinaryClassification / (Sentiment Analysis)
 
 #### **Algorithms (Trainers) used:**
+
 mlContext.BinaryClassification.Trainers
+
 - .FastTree
   - Accuracy: 77.06%
   - Auc: 73.42%
@@ -102,15 +104,17 @@ $"{commentText}\t{commentBinaryValue}"
 ### DemoMLNet.Tasks.MulticlassClassification
 
 #### **Algorithms (Trainers) used:**
+
 mlContext.MulticlassClassification.Trainers
+
 - .SdcaMaximumEntropy
   - Accuracy: 77.06%
   - Auc: 73.42%
   - F1Score: 85.96%
 - .LightGbm
-  - Accuracy: 
-  - Auc: 
-  - F1Score: 
+  - Accuracy:
+  - Auc:
+  - F1Score:
 
 DemoMLNet.Tasks.MulticlassClassification is a .NET Core 3.1 Console Application.  
 A pre-trained model predicts the category of a book/movie/joke - based on a summary (text) about it that you give as an input.
@@ -123,7 +127,15 @@ Link: https://www.storytel.com/bg/bg/
 ### Object Detection
 
 ### DemoMLNet.Tasks.ObjectDetection\.Console
+
+DemoMLNet.Tasks.ObjectDetection\.Console is a .NET Core 3.1 Console Application.
+
 ### DemoMLNet.Tasks.ObjectDetection\.Web
+
+DemoMLNet.Tasks.ObjectDetection\.Web is a default .NET Core 3.1 Web (MVC) Application.  
+Its only purpose is to create a better environment for the dev to upload new images and evaluate the results that the ONNX prediction model provides.
+
+![Person Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_webapp.jpg)
 
 #### **Algorithm used: OnnxModelScorer ( TinyYolo2_model.onnx )**
 
@@ -132,14 +144,17 @@ Finds all the familiar objects in an image (person, dog, horse, bike, car etc.)
 ---
 
 ### Recommendation
+
 ### DemoMLNet.Tasks.Recommendation
 
 The source used for this demo came from kaggle.com.  
 Link: https://www.kaggle.com/arashnic/book-recommendation-dataset  
 Book Recommendation Dataset includes 3 tables:
+
 - Books.csv
-- Ratings.csv 
+- Ratings.csv
 - Users.csv - ingored
+
 ## Credits
 
 Implementing my first ML.NET project was a piece of cake thanks to:
