@@ -1,7 +1,7 @@
-﻿using Microsoft.ML.Data;
-
-namespace DemoMLNet.Tasks.Recommendation
+﻿namespace DemoMLNet.Tasks.Recommendation
 {
+    using Microsoft.ML.Data;
+
     public class UserBook
     {
         [LoadColumn(0)]

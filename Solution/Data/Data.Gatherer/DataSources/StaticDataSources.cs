@@ -1,7 +1,7 @@
-﻿using PetarTotev.Net.DSA.MyCollections;
-
-namespace DemoMLNet.Data.Gatherer.DataSources
+﻿namespace DemoMLNet.Data.Gatherer.DataSources
 {
+    using PetarTotev.Net.DSA.MyCollections;
+
     public static class StaticDataSources
     {
         public static class FlagmanBg

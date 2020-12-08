@@ -10,8 +10,9 @@ This repository contains a solution with a number of .NET Core projects that exp
 
 ## Technologies
 
-- Microsoft ML\.NET
 - AngleSharp
+- Microsoft ML\.NET
+- Microsoft ML\.Recommender
 
 ## Contents
 
@@ -42,12 +43,11 @@ The 'PT_Demo_ML.NETests' solution consists of 2 directories:
 
 DemoMLNet.Data.Gatherer is a .NET Core 3.1 Console Application.  
 It is implemented to play the role of a **web crawler**.  
-Once an instance of DataGatherer is instantiated it also creates a new HttpClient and AngleSharp HtmlParser.
-They are used within a for loop that goes through a number of pages with URLs that end with an article/category number, for example:  
-https://www.flagman.bg/article/{articleId}  
-The result of this crawling is a string. It is cleaned from all its html elements and is saved as a .txt file (comment, vote ratio).  
-For this tutorial, 44137 comments are gathered.  
-The .txt file would later be used to train a ML model - 80% for training and 20% for evaluating the accuracy of the algorithm used.
+Once an instance of DataGatherer is instantiated it creates new HttpClient and AngleSharp HtmlParser objects.
+They are used within a for-loop that goes through a number of pages with URLs that end with an article/category number.  
+For example: https://www.flagman.bg/article/{articleId}  
+The result of this crawling is a string. It is cleaned from all its html elements and is saved as a .txt file.  
+The .txt files gathered would be used to train the ML models - 80% for training and 20% for evaluating the accuracy of the algorithm used.  
 
 ---
 

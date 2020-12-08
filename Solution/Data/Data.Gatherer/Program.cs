@@ -1,9 +1,9 @@
-﻿using System;
-using System.Text;
-using static DemoMLNet.Data.Gatherer.DataSources.StaticDataSources;
-
-namespace DemoMLNet.Data.Gatherer
+﻿namespace DemoMLNet.Data.Gatherer
 {
+    using System;
+    using System.Text;
+    using static DemoMLNet.Data.Gatherer.DataSources.StaticDataSources;
+
     public class Program
     {
         static void Main()
@@ -12,10 +12,10 @@ namespace DemoMLNet.Data.Gatherer
 
             DataGatherer dataGatherer = new DataGatherer();
 
-            // Will return 0 once the Gather methods are executed.
+            // Will return 0 once a Gather method is executed.
             int commentsFlagmanBg = dataGatherer.GatherDataFromFlagmanBg(FlagmanBg.Path).GetAwaiter().GetResult();
-            //int commentsStorytelBg = dataGatherer.GatherDataFromStorytelBg(StorytelBg.Path).GetAwaiter().GetResult();
-            //int commentsTrudBg = dataGatherer.GatherDataFromTrudBg(TrudBg.Path).GetAwaiter().GetResult();
+            int commentsStorytelBg = dataGatherer.GatherDataFromStorytelBg(StorytelBg.Path).GetAwaiter().GetResult();
+            int commentsTrudBg = dataGatherer.GatherDataFromTrudBg(TrudBg.Path).GetAwaiter().GetResult();
         }
     }
 }

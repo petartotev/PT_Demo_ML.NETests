@@ -1,17 +1,17 @@
-﻿// AngleSharp is a .NET library which gives the ability to parse angle bracket based hyper-texts like HTML, SVG etc.
-using AngleSharp.Dom;
-using AngleSharp.Html.Parser;
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using static DemoMLNet.Data.Gatherer.DataSources.StaticDataSources;
-
-namespace DemoMLNet.Data.Gatherer
+﻿namespace DemoMLNet.Data.Gatherer
 {
+    // AngleSharp is a .NET library which gives the ability to parse angle bracket based hyper-texts like HTML, SVG etc.
+    using AngleSharp.Dom;
+    using AngleSharp.Html.Parser;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using static DemoMLNet.Data.Gatherer.DataSources.StaticDataSources;
+
     public class DataGatherer
     {
         private HtmlParser parser; //using AngleSharp.Html.Parser.HtmlParser
