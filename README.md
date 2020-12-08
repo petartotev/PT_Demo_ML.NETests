@@ -11,8 +11,9 @@ _This is an educational project. That's why there are a lot of comments with exp
 ## Technologies
 
 - AngleSharp
-- Microsoft ML\.NET
-- Microsoft ML\.Recommender
+- Microsoft\.ML\.NET
+- Microsoft\.ML\.LightGBM
+- Microsoft\.ML\.Recommender
 
 ## Contents
 
@@ -132,7 +133,7 @@ DemoMLNet.Tasks.ObjectDetection\.Console is a .NET Core 3.1 Console Application.
 
 ### DemoMLNet.Tasks.ObjectDetection\.Web
 
-DemoMLNet.Tasks.ObjectDetection\.Web is a default .NET Core 3.1 Web (MVC) Application.  
+DemoMLNet.Tasks.ObjectDetection\.Web is a .NET Core 3.1 Web (MVC) Application.  
 Its only purpose is to create a better environment for the dev to upload new images and evaluate the results that the ONNX prediction model provides.
 
 ![Person Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_webapp.jpg)
@@ -154,6 +155,10 @@ Book Recommendation Dataset includes 3 tables:
 - Books.csv
 - Ratings.csv
 - Users.csv - ingored
+
+These datasets are simplified to a single table that includes UsersIds to BooksIds that are recommended with rating between 8 and 10 (highly liked).
+
+This information is used to evaluate if a random User would like a Book, based on network of the recommended books within the UserId-BookId table.
 
 ## Credits
 
