@@ -4,10 +4,10 @@
 
 This repository contains a solution with a number of .NET Core projects that experiment with the ML.NET library.
 
+![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
+
 _This is an educational project. That's why there are a lot of comments with explanations on what different sections of code do. They help me understand easier the steps of machine learning:  
 'gather info' > 'build model' > 'train model' > 'test model' > 'evaluate model' > 'use model'._
-
-![Horse Object Detected](Resources/Screenshots/PT_Demo_ML.NETests_cover.jpg)
 
 ## Technologies
 
